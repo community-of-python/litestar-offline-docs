@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "litestar-offline-docs"
-version = "0.1.0"
+version = "0"
 description = "Offline API docs for Litestar"
 authors = ["community-of-python"]
 readme = "README.md"
