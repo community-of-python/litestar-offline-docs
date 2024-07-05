@@ -1,0 +1,71 @@
+[tool.poetry]
+name = "litestar-offline-docs"
+version = "0.1.0"
+description = "Offline API docs for Litestar"
+authors = ["community-of-python"]
+readme = "README.md"
+packages = [{ include = "litestar_offline_docs" }]
+include = [{ path = "static/*.*" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+litestar = { version = "*", extras = ["standard"] }
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest-cov = "*"
+anyio = "*"
+ruff = "*"
+mypy = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.mypy]
+python_version = 3.11
+strict = true
+
+[tool.ruff]
+target-version = "py311"
+fix = true
+unsafe-fixes = true
+line-length = 120
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "EM",
+    "FBT",
+    "TRY003",
+    "D1",
+    "D203",
+    "D213",
+    "G004",
+    "FA",
+    "ANN101",
+    "ANN102",
+    "COM812",
+    "ISC001",
+]
+
+[tool.ruff.lint.isort]
+no-lines-before = ["standard-library", "local-folder"]
+known-third-party = []
+known-local-folder = []
+lines-after-imports = 2
+
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/*.py" = ["S101", "S311"]
+
+[tool.pytest.ini_options]
+addopts = '--cov=. -p no:warnings --cov-report term-missing'
+
+[tool.coverage.report]
+skip_covered = true
+show_missing = true
