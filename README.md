@@ -5,7 +5,7 @@ This package enables "offline mode" for FastAPI (in other words lets you avoid l
 # Installation
 
 ```sh
-poetry add ltestar-offline-docs
+poetry add litestar-offline-docs
 ```
 
 # Usage
