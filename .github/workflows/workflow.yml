@@ -11,7 +11,7 @@ on:
     types:
       - published
 
-
 jobs:
   ci:
     uses: community-of-python/community-workflow/.github/workflows/preset.yml@main
+    secrets: inherit
