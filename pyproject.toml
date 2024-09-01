@@ -9,7 +9,7 @@ include = [{ path = "static/*.*" }]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-litestar = { version = "2.9.1", extras = ["standard"] }
+litestar = { version = "2.11.0", extras = ["standard"] }
 
 
 [tool.poetry.group.dev.dependencies]
