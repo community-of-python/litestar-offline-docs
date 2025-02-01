@@ -1,43 +1,38 @@
-[tool.poetry]
+[project]
 name = "litestar-offline-docs"
-version = "1.0.1"
 description = "Offline API docs for Litestar"
-authors = ["community-of-python"]
+authors = [{ name = "community-of-python" }]
 readme = "README.md"
-packages = [{ include = "litestar_offline_docs" }]
-include = [{ path = "static/*.*" }]
+requires-python = ">=3.9,<4"
+dynamic = ["version"]
+dependencies = [
+    "litestar>=2.9.1",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-litestar = { version = "^2.9.1", extras = ["standard"] }
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.2.2"
-pytest-cov = "^5.0.0"
-anyio = "^4.4.0"
-pre-commit = "^3.5.0"
-pytest-xdist = "^3.6.1"
-ruff = "^0.7.1"
-mypy = "^1.13.0"
+[dependency-groups]
+dev = [
+    "anyio>=4.4.0",
+    "mypy>=1.13.0",
+    "pre-commit>=3.5.0",
+    "pytest>=8.2.2",
+    "pytest-cov>=5.0.0",
+    "pytest-xdist>=3.6.1",
+    "ruff>=0.7.1",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
 
 [tool.mypy]
 files = ["litestar_offline_docs", "tests"]
 python_version = "3.9"
 strict = true
-ignore_missing_imports = true
 pretty = true
 show_error_codes = true
-implicit_reexport = true
-warn_unused_ignores = false
-warn_return_any = false
-namespace_packages = true
-disable_error_code = "attr-defined,valid-type"
-disallow_subclassing_any = false
-disallow_untyped_decorators = false
 
 [tool.ruff]
 target-version = "py39"
@@ -58,16 +53,12 @@ ignore = [
     "D213",
     "G004",
     "FA",
-    "ANN101",
-    "ANN102",
     "COM812",
     "ISC001",
 ]
 
 [tool.ruff.lint.isort]
 no-lines-before = ["standard-library", "local-folder"]
-known-third-party = []
-known-local-folder = []
 lines-after-imports = 2
 
 [tool.ruff.lint.extend-per-file-ignores]
