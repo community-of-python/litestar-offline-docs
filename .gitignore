@@ -1,7 +1,10 @@
 __pycache__
-.coverage*
+.coverage
 .mypy_cache
 .pytest_cache
 .venv
 .vscode
 dist
+.idea
+.python-version
+uv.lock

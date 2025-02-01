@@ -1,14 +1,29 @@
-default: install lint check-types test
+default: install lint test
 
 install:
-    poetry install
+    uv lock --upgrade
+    uv sync --frozen
 
 lint:
-    poetry run ruff check .
-    poetry run ruff format .
+    uv run ruff format
+    uv run ruff check --fix
+    uv run mypy .
 
-check-types:
-    poetry run mypy .
+lint-ci:
+    uv run ruff format --check
+    uv run ruff check --no-fix
+    uv run mypy .
 
 test *args:
-    poetry run pytest {{args}}
+    uv run --no-sync pytest {{ args }}
+
+publish:
+    rm -rf dist
+    uv build
+    uv publish --token $PYPI_TOKEN
+
+hook:
+    uv run pre-commit install
+
+unhook:
+    uv run pre-commit uninstall
